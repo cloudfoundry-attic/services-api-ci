@@ -6,8 +6,6 @@ set -x
 source /usr/local/share/chruby/chruby.sh
 chruby 2.1.4
 
-set -u
-
 RELEASE_DIRECTORY=cf-release-master
 BOSH_LITE_IP=$(cat /workspace/api-address)
 
@@ -15,7 +13,7 @@ cd /workspace/$RELEASE_DIRECTORY
 
 function latest_release() {
   ls releases/cf-*            | \
-  cut -d '-' -f3              | \
+  cut -d '-' -f2              | \
   cut -d '.' -f1              | \
   sort -n                     | \
   tail -1
