@@ -6,8 +6,6 @@ set -x
 source /usr/local/share/chruby/chruby.sh
 chruby 2.1.4
 
-set -u
-
 RELEASE_DIRECTORY=cf-release-develop
 BOSH_LITE_IP=$(cat /workspace/api-address)
 
