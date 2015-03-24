@@ -28,7 +28,6 @@ function make_manifest() {
 function customize_manifest() {
   MANIFEST_FILE=$PWD/bosh-lite/manifests/cf-manifest.yml
   sed -i "s/10.244.0.34.xip.io/$BOSH_LITE_IP.xip.io/g" $MANIFEST_FILE
-  # sed -i "s/^name\: cf/name\: cf-warden/g" $MANIFEST_FILE
 }
 
 function bosh_deploy() {
