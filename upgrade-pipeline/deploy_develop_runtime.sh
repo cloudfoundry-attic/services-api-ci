@@ -42,6 +42,7 @@ function customize_manifest() {
 }
 
 function bosh_deploy() {
+  bosh create release --force
   bosh -n upload release "dev_releases/cf/cf-`latest_release_number`+dev.`latest_dev_release_number`.yml" --skip-if-exists
   bosh -n deploy
 }
