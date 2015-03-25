@@ -11,22 +11,6 @@ BOSH_LITE_IP=$(cat /workspace/api-address)
 
 cd /workspace/$RELEASE_DIRECTORY
 
-function latest_release_number() {
-  ls dev_releases/cf/cf-* | \
-  cut -d '-' -f2 | \
-  cut -d '+' -f1 | \
-  sort -n | \
-  tail -1
-}
-
-function latest_dev_release_number() {
-  ls dev_releases/cf-`latest_release_number`+dev.* | \
-  cut -d '-' -f2                                   | \
-  cut -d '.' -f2                                   | \
-  sort -n                                          | \
-  tail -1
-}
-
 function make_manifest() {
   BOSH_RELEASES_DIR=/workspace \
   CF_RELEASE_DIR=/workspace/$RELEASE_DIRECTORY \
@@ -39,8 +23,8 @@ function customize_manifest() {
 }
 
 function bosh_deploy() {
-  bosh create release --force --name=cf
-  bosh -n upload release "dev_releases/cf/cf-`latest_release_number`+dev.`latest_dev_release_number`.yml" --skip-if-exists
+  bosh -n create release --force
+  bosh -n upload release --skip-if-exists
   bosh -n deploy
 }
 
