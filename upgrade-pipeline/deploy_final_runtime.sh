@@ -32,7 +32,7 @@ function customize_manifest() {
 
 function bosh_deploy() {
   FINAL_RELEASE_VERSION=$(latest_release)
-  bosh -n upload release releases/cf-${FINAL_RELEASE_VERSION}.yml --skip-if-exists
+  bosh -n --parallel 3 upload release releases/cf-${FINAL_RELEASE_VERSION}.yml --skip-if-exists
   bosh -n deploy
 }
 
