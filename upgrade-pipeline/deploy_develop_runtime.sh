@@ -7,7 +7,6 @@ source /usr/local/share/chruby/chruby.sh
 chruby 2.1.4
 
 RELEASE_DIRECTORY=cf-release-develop
-BOSH_LITE_IP=$(cat /workspace/api-address)
 
 cd /workspace/$RELEASE_DIRECTORY
 
@@ -19,7 +18,7 @@ function make_manifest() {
 
 function customize_manifest() {
   MANIFEST_FILE=$PWD/bosh-lite/manifests/cf-manifest.yml
-  sed -i "s/10.244.0.34.xip.io/$BOSH_LITE_IP.xip.io/g" $MANIFEST_FILE
+  sed -i "s/10.244.0.34.xip.io/$BOSH_IP.xip.io/g" $MANIFEST_FILE
 }
 
 function bosh_deploy() {
@@ -28,10 +27,7 @@ function bosh_deploy() {
   bosh -n deploy
 }
 
-export BOSH_USER=admin
-export BOSH_PASSWORD=admin
-
-bosh -n target ${BOSH_LITE_IP}.xip.io
+bosh -n target bosh.wasabi.cf-app.com 
 make_manifest
 customize_manifest
 bosh_deploy
