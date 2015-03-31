@@ -11,7 +11,7 @@ source /usr/local/share/chruby/chruby.sh
 chruby 2.1.4
 
 export BOSH_RELEASES_DIR=/workspace
-export DEPLOYMENT_NAME=cf-warden
+export DEPLOYMENT_NAME=cf-aws
 
 bosh -n target bosh.wasabi.cf-app.com 
 
