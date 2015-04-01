@@ -8,9 +8,6 @@ chruby 2.1.4
 
 RELEASE_DIRECTORY=cf-release-master
 
-export BOSH_USER=$BOSH_USER
-export BOSH_PASSWORD=$BOSH_PASSWORD
-
 cd /workspace/$RELEASE_DIRECTORY
 
 function latest_release() {
@@ -36,6 +33,9 @@ function bosh_deploy() {
   bosh -n --parallel 3 upload release releases/cf-${FINAL_RELEASE_VERSION}.yml --skip-if-exists
   bosh -n deploy
 }
+
+export BOSH_USER=ci
+export BOSH_PASSWORD=c1oudc0w
 
 bosh -n target bosh.wasabi.cf-app.com 
 make_manifest
