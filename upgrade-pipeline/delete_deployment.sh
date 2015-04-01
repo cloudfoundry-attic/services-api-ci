@@ -10,6 +10,8 @@ cd /workspace
 source /usr/local/share/chruby/chruby.sh
 chruby 2.1.4
 
+export BOSH_USER=$BOSH_USER
+export BOSH_PASSWORD=$BOSH_PASSWORD
 export BOSH_RELEASES_DIR=/workspace
 export DEPLOYMENT_NAME=cf-aws
 

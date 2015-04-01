@@ -8,6 +8,9 @@ chruby 2.1.4
 
 RELEASE_DIRECTORY=cf-release-master
 
+export BOSH_USER=$BOSH_USER
+export BOSH_PASSWORD=$BOSH_PASSWORD
+
 cd /workspace/$RELEASE_DIRECTORY
 
 function latest_release() {
