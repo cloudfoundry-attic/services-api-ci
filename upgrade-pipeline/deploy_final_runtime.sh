@@ -35,9 +35,6 @@ function bosh_deploy() {
   bosh -n deploy
 }
 
-export BOSH_USER=ci
-export BOSH_PASSWORD=c1oudc0w
-
 bosh -n target bosh.${RELENG_ENV}.cf-app.com
 make_manifest
 bosh_deploy
