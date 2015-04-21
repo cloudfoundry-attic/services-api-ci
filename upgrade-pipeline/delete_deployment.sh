@@ -8,7 +8,7 @@ RELEASE_NAME=cf
 cd /workspace
 
 source /usr/local/share/chruby/chruby.sh
-chruby 2.1.4
+chruby 2.1.6
 
 export BOSH_RELEASES_DIR=/workspace
 RELENG_ENV=$RELENG_ENV:-wasabi}

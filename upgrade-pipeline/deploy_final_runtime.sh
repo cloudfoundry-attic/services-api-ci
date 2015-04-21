@@ -4,7 +4,7 @@ set -e
 set -x
 
 source /usr/local/share/chruby/chruby.sh
-chruby 2.1.4
+chruby 2.1.6
 
 RELEASE_DIRECTORY=cf-release-master
 RELENG_ENV=${RELENG_ENV:-wasabi}
