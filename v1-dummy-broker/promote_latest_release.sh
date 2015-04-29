@@ -18,7 +18,6 @@ bosh -n target ${BOSH_PREFIX}.${RELENG_ENV}.cf-app.com
   /workspace/deployments-runtime/$RELENG_ENV/cf-shared-secrets.yml \
   /workspace/deployments-core-services/$RELENG_ENV/v1-dummy-broker-secrets.yml \
   /workspace/deployments-core-services/$RELENG_ENV/cf-properties.yml \
-  /workspace/deployments-core-services/$RELENG_ENV/cf-networks-stub.yml \
   > deployment.yml
 bosh deployment deployment.yml
 
