@@ -36,4 +36,4 @@ EOF
 
 GOPATH=$GOPATH:$GOPATH/src/github.com/cloudfoundry/cf-acceptance-tests/Godeps/_workspace/ \
 CONFIG=`pwd`/integration_config.json \
-ginkgo -r
+ginkgo before_upgrade/

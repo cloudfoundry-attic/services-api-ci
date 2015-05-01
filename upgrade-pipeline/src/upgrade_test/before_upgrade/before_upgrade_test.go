@@ -9,7 +9,6 @@ import (
 )
 
 var _ = Describe("Setup before upgrade", func() {
-
 	It("creates a service broker", func() {
 		cf.AsUser(context.AdminUserContext(), DEFAULT_TIMEOUT, func() {
 			brokers := cf.Cf("service-brokers").Wait(DEFAULT_TIMEOUT)
@@ -30,12 +29,20 @@ var _ = Describe("Setup before upgrade", func() {
 			Expect(services.Out.Contents()).To(ContainSubstring("bind-me"))
 		})
 	})
-	It("creates an unbound instance that will later be updated", func() {
+	It("creates an unbound instance whose plan will later be updated", func() {
 		cf.AsUser(context.AdminUserContext(), DEFAULT_TIMEOUT, func() {
 			Expect(cf.Cf("target", "-o", "upgrade-org", "-s", "upgrade-space").Wait(DEFAULT_TIMEOUT)).To(Exit(0))
 
 			services := cf.Cf("services").Wait(DEFAULT_TIMEOUT)
-			Expect(services.Out.Contents()).To(ContainSubstring("update-me"))
+			Expect(services.Out.Contents()).To(ContainSubstring("update-my-plan"))
+		})
+	})
+	It("creates an unbound instance whose name will later be updated", func() {
+		cf.AsUser(context.AdminUserContext(), DEFAULT_TIMEOUT, func() {
+			Expect(cf.Cf("target", "-o", "upgrade-org", "-s", "upgrade-space").Wait(DEFAULT_TIMEOUT)).To(Exit(0))
+
+			services := cf.Cf("services").Wait(DEFAULT_TIMEOUT)
+			Expect(services.Out.Contents()).To(ContainSubstring("update-my-name"))
 		})
 	})
 	It("creates an unbound instance that will later be deleted", func() {
