@@ -14,7 +14,7 @@ export PATH=$PATH:$GOPATH/bin
 
 cd $WORKSPACE_DIR/services-api-ci/upgrade-pipeline/src/upgrade_test/
 
-if [ "$RELENG_ENV" == "bosh-lite" ] 
+if [ "$RELENG_ENV" == "bosh-lite" ]
 then
   API_URL="api.10.244.0.34.xip.io"
   APPS_URL="10.244.0.34.xip.io"
