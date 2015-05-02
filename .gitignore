@@ -1,3 +1,4 @@
 upgrade-pipeline/pkg/
 upgrade-pipeline/bin/
 upgrade-pipeline/src/github.com/onsi/
+upgrade-pipeline/src/upgrade_test/integration_config.json
