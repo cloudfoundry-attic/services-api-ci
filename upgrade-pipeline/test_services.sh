@@ -11,7 +11,7 @@ if [ "$RELENG_ENV" == "bosh-lite" ]
 then
   API_URL="api.10.244.0.34.xip.io"
   APPS_URL="10.244.0.34.xip.io"
-  CF_ADMIN_PASSWORD=admin
+  CF_PASSWORD=admin
 else
   API_URL="api.${RELENG_ENV}.cf-app.com"
   APPS_URL="$APPS_DOMAIN.cf-app.com"
@@ -28,7 +28,7 @@ cat > integration_config.json <<EOF
 {
   "api": "$API_URL",
   "admin_user": "admin",
-  "admin_password": "${CF_ADMIN_PASSWORD}",
+  "admin_password": "${CF_PASSWORD}",
   "apps_domain": "${APPS_URL}",
   "skip_ssl_validation": true
 }
