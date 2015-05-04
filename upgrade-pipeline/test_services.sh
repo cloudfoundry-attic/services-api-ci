@@ -17,7 +17,6 @@ else
   APPS_URL="$APPS_DOMAIN.cf-app.com"
 fi
 
-go get github.com/onsi/ginkgo/ginkgo
 go install github.com/onsi/ginkgo/ginkgo
 
 export PATH=$PATH:$GOPATH/bin
