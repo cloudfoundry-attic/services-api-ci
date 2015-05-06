@@ -23,5 +23,16 @@ bosh -n target ${BOSH_PREFIX}.${RELENG_ENV}.cf-app.com
 bosh deployment deployment.yml
 
 bosh create release --force --name $RELEASE_NAME
-bosh -n upload release --rebase
+
+set +e
+  bosh -N upload release --rebase &>output.txt
+  local status=$?
+set -e
+
+if [[ $(cat output.txt) != *"Error 100: Rebase"* && $status -ne 0 ]]
+then
+  echo "failing"
+  exit 1
+fi
+
 bosh -n deploy
