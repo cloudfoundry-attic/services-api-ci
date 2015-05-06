@@ -4,8 +4,11 @@ set -xe
 
 GOPATH=/workspace/services-api-ci/upgrade-pipeline
 WORKSPACE_DIR="$(cd $(dirname ${BASH_SOURCE[0]})/../../ && pwd)"
+GODEP_WORKSPACE=$GOPATH/src/github.com/cloudfoundry/cf-acceptance-tests/Godeps/_workspace/
 RELENG_ENV=${RELENG_ENV:-wasabi}
 APPS_DOMAIN=${RELENG_ENV}-app
+
+rm -rf $GODEP_WORKSPACE/pkg
 
 if [ "$RELENG_ENV" == "bosh-lite" ]
 then
@@ -33,6 +36,6 @@ cat > integration_config.json <<EOF
 }
 EOF
 
-GOPATH=$GOPATH:$GOPATH/src/github.com/cloudfoundry/cf-acceptance-tests/Godeps/_workspace/ \
+GOPATH=$GOPATH:$GODEP_WORKSPACE \
 CONFIG=`pwd`/integration_config.json \
 ginkgo after_upgrade/
