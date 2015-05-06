@@ -22,5 +22,5 @@ bosh -n target ${BOSH_PREFIX}.${RELENG_ENV}.cf-app.com
 bosh deployment deployment.yml
 
 bosh create release --force --name $RELEASE_NAME
-bosh -n upload release --skip-if-exists
+bosh -n upload release --rebase
 bosh -n deploy
