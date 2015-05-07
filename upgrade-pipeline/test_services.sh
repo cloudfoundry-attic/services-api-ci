@@ -37,6 +37,9 @@ cat > integration_config.json <<EOF
 }
 EOF
 
+#because there's no way of knowing if cf is actually ready
+sleep 180
+
 GOPATH=$GOPATH:$GODEP_WORKSPACE \
 CONFIG=`pwd`/integration_config.json \
 ginkgo after_upgrade/
