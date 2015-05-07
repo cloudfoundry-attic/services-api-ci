@@ -6,6 +6,19 @@ set -x
 DEPLOYMENT_NAME=v1-dummy-broker
 RELEASE_NAME=v1-dummy-broker
 
+upload_release() {
+  set +e
+    bosh -n -N upload release --rebase &>output.txt
+    local status=$?
+  set -e
+
+  if [[ $(cat output.txt) != *"Error 100: Rebase"* && $status -ne 0 ]]
+  then
+    echo "failing"
+    exit 1
+  fi
+}
+
 cd /workspace/v1-dummy-broker-release
 source /usr/local/share/chruby/chruby.sh
 chruby 2.1.4
@@ -24,15 +37,6 @@ bosh deployment deployment.yml
 
 bosh create release --force --name $RELEASE_NAME
 
-set +e
-  bosh -N upload release --rebase &>output.txt
-  local status=$?
-set -e
-
-if [[ $(cat output.txt) != *"Error 100: Rebase"* && $status -ne 0 ]]
-then
-  echo "failing"
-  exit 1
-fi
+upload_release
 
 bosh -n deploy
