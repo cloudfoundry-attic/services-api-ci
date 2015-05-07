@@ -9,6 +9,7 @@ RELENG_ENV=${RELENG_ENV:-wasabi}
 APPS_DOMAIN=${RELENG_ENV}-app
 
 rm -rf $GODEP_WORKSPACE/pkg
+rm -rf $GOPATH/pkg
 
 if [ "$RELENG_ENV" == "bosh-lite" ]
 then
