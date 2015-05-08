@@ -3,4 +3,4 @@
 	url = git@github.com:cloudfoundry/cf-acceptance-tests.git
 [submodule "upgrade-pipeline/src/github.com/onsi/ginkgo"]
 	path = upgrade-pipeline/src/github.com/onsi/ginkgo
-	url = git@github.com:onsi/ginkgo
+	url = git@github.com:onsi/ginkgo.git
