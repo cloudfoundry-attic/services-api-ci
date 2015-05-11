@@ -20,7 +20,7 @@ var _ = Describe("Do things after upgrade", func() {
 			Expect(services.Out.Contents()).To(MatchRegexp("bind-me\\s+fake-service\\s+fake-plan\\s+upgrade-service-broker"))
 
 			service := cf.Cf("service", "bind-me").Wait(DEFAULT_TIMEOUT)
-			Expect(service.Out.Contents()).NotTo(ContainSubstring("in progress"))
+			Expect(service.Out.Contents()).To(ContainSubstring("Status: create succeeded"))
 		})
 	})
 
@@ -34,6 +34,9 @@ var _ = Describe("Do things after upgrade", func() {
 				services := cf.Cf("services").Wait(DEFAULT_TIMEOUT)
 				Expect(services.Out.Contents()).To(ContainSubstring("update-my-plan"))
 				Expect(services.Out.Contents()).To(ContainSubstring("fake-plan-2"))
+
+				service := cf.Cf("service", "update-my-plan").Wait(DEFAULT_TIMEOUT)
+				Expect(service.Out.Contents()).To(ContainSubstring("Status: update succeeded"))
 			})
 		})
 
@@ -45,6 +48,9 @@ var _ = Describe("Do things after upgrade", func() {
 
 				services := cf.Cf("services").Wait(DEFAULT_TIMEOUT)
 				Expect(services.Out.Contents()).To(ContainSubstring("my-name-is-updated"))
+
+				service := cf.Cf("service", "my-name-is-updated").Wait(DEFAULT_TIMEOUT)
+				Expect(service.Out.Contents()).To(ContainSubstring("Status: update succeeded"))
 			})
 		})
 	})
@@ -69,6 +75,9 @@ var _ = Describe("Do things after upgrade", func() {
 			services := cf.Cf("services").Wait(DEFAULT_TIMEOUT)
 			Expect(services.Out.Contents()).To(ContainSubstring("unbind-me"))
 			Expect(services.Out.Contents()).NotTo(MatchRegexp("unbind-me\\s+fake-service\\s+fake-plan\\s+upgrade-service-broker"))
+
+			service := cf.Cf("service", "unbind-me").Wait(DEFAULT_TIMEOUT)
+			Expect(service.Out.Contents()).To(ContainSubstring("Status: create succeeded"))
 		})
 	})
 })
