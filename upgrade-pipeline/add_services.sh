@@ -7,6 +7,7 @@ WORKSPACE_DIR="$(cd $(dirname ${BASH_SOURCE[0]})/../../ && pwd)"
 GODEP_WORKSPACE=$GOPATH/src/github.com/cloudfoundry/cf-acceptance-tests/Godeps/_workspace/
 RELENG_ENV=${RELENG_ENV:-wasabi}
 APPS_DOMAIN=${RELENG_ENV}-app
+SLEEP_TIME=${SLEEP_TIME:-300}
 
 rm -rf $GODEP_WORKSPACE/pkg
 rm -rf $GOPATH/pkg
@@ -38,7 +39,7 @@ cat > integration_config.json <<EOF
 EOF
 
 #because there's no way of knowing if cf is actually ready
-sleep 180
+sleep $SLEEP_TIME
 
 GOPATH=$GOPATH:$GODEP_WORKSPACE \
 CONFIG=`pwd`/integration_config.json \
