@@ -9,8 +9,6 @@ chruby 2.1.6
 RELEASE_DIRECTORY=cf-release-master
 RELENG_ENV=${RELENG_ENV:-wasabi}
 
-# Prevent chruby from auto switching to old version
-rm /workspace/$RELEASE_DIRECTORY/.ruby-version
 cd /workspace/$RELEASE_DIRECTORY
 
 function latest_release() {
