@@ -53,8 +53,10 @@ RUN \
   tar zxf /tmp/v0.4.1.tar.gz -C /tmp && \
   cd /tmp/ruby-install-0.4.1 && make install && \
   ruby-install ruby 1.9.3-p547 && \
+  ruby-install ruby 2.1.4 && \
   ruby-install ruby 2.1.6 && \
   rm -rf /usr/local/src/ruby-1.9.3-p547 && \
+  rm -rf /usr/local/src/ruby-2.1.4 && \
   rm -rf /usr/local/src/ruby-2.1.6 && \
   rm -rf /tmp/*
 
