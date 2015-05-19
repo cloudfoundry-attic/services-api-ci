@@ -22,6 +22,16 @@ cd /workspace/v1-dummy-broker-release
 ssh-add /root/.ssh/id_rsa
 ssh-add -l
 git fetch origin $MASTER_BRANCH
+
+set +e
+git log origin/develop ^origin/master | grep commit
+EXIT_CODE=$?
+if [[ $EXIT_CODE -eq 1 ]]; then
+  echo "No changes to the release. Exiting early and not cutting a new final release."
+  exit 0
+fi
+set -e
+
 git checkout $MASTER_BRANCH
 git merge origin/release-candidate
 
